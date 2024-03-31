@@ -2,7 +2,11 @@ import { prisma } from '../db/prismaConnection.js';
 
 export const findTasks = async () => {
 	try {
-		const data = await prisma.task.findMany();
+		const data = await prisma.task.findMany({
+			orderBy: {
+				id: 'asc'
+			}
+		});
 		return data;
 	} catch (error) {
 		console.error('Error connecting to the db: ', error);
